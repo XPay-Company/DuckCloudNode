@@ -1,34 +1,360 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DuckCloudNode — Приватные прокси-решения</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
-        .card { background: #1e1e1e; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); text-align: center; max-width: 400px; border: 1px solid #333; }
-        h1 { color: #fff; margin-bottom: 10px; }
-        p { color: #aaa; line-height: 1.6; }
-        .price { font-size: 24px; color: #4caf50; font-weight: bold; margin: 20px 0; }
-        .btn { background: #0088cc; color: white; padding: 15px 30px; text-decoration: none; border-radius: 30px; display: inline-block; transition: 0.3s; font-weight: bold; }
-        .btn:hover { background: #00aaff; transform: translateY(-2px); }
-        footer { margin-top: 30px; font-size: 11px; color: #555; }
-        footer a { color: #777; text-decoration: none; margin: 0 5px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>DuckCloudNode | Приватные прокси-решения</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: #0a0a0c;
+      color: #f0f0f5;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 30% 20%, #1a1a2e 0%, #0a0a0c 70%);
+    }
+
+    .grid-mesh {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      animation: slowDrift 25s infinite alternate ease-in-out;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.15;
+      will-change: transform;
+      z-index: 1;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #4a6cf7; top: -250px; left: -150px; animation: floatOrb 18s infinite alternate; }
+    .orb-2 { width: 500px; height: 500px; background: #7b2cbf; bottom: -200px; right: -150px; animation: floatOrb 22s infinite alternate-reverse; }
+    .orb-3 { width: 350px; height: 350px; background: #0ea5e9; top: 50%; left: 60%; animation: floatOrb 20s infinite alternate; opacity: 0.1; }
+
+    @keyframes slowDrift {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(-30px, -20px) scale(1.05); }
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      100% { transform: translate(50px, 70px) rotate(25deg); }
+    }
+
+    .wrapper {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 480px;
+      padding: 24px;
+      perspective: 1500px;
+    }
+
+    .glass-card {
+      background: rgba(20, 20, 28, 0.55);
+      backdrop-filter: blur(45px) saturate(180%);
+      -webkit-backdrop-filter: blur(45px) saturate(180%);
+      border-radius: 48px;
+      padding: 44px 36px;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 0 1px rgba(255, 255, 255, 0.06);
+      text-align: center;
+      transition: transform 0.3s ease;
+      animation: levitate 8s ease-in-out infinite;
+    }
+
+    @keyframes levitate {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #ffffff 0%, #b0d4ff 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 10px 25px rgba(0,160,255,0.3);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(220, 220, 240, 0.8);
+      margin-bottom: 32px;
+    }
+
+    .feature-row {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 32px;
+      gap: 10px;
+    }
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255,255,255,0.02);
+      backdrop-filter: blur(10px);
+      padding: 12px 14px;
+      border-radius: 24px;
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      border: 1px solid rgba(255,255,255,0.04);
+      flex: 1;
+    }
+    .feature-item span:first-child { font-size: 1.4rem; margin-bottom: 4px; }
+
+    .price-badge {
+      display: inline-flex;
+      align-items: baseline;
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(18px);
+      border-radius: 100px;
+      padding: 14px 32px;
+      margin-bottom: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .price { font-size: 2.5rem; font-weight: 700; color: #7dd3fc; margin-right: 6px; text-shadow: 0 0 20px rgba(125, 211, 252, 0.6); }
+    .period { font-size: 1rem; color: #a0a0b8; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 1.15rem;
+      padding: 16px 38px;
+      border-radius: 40px;
+      text-decoration: none;
+      margin-bottom: 10px;
+      box-shadow: 0 12px 28px rgba(14, 165, 233, 0.45);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      cursor: pointer;
+      width: 100%;
+      gap: 8px;
+    }
+    .btn:hover { transform: scale(1.02); box-shadow: 0 15px 35px rgba(56, 189, 248, 0.6); }
+
+    #error-toast {
+      display: none;
+      background: rgba(255, 69, 58, 0.15);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 69, 58, 0.3);
+      color: #ff9f9f;
+      padding: 16px;
+      border-radius: 24px;
+      font-size: 0.9rem;
+      margin-top: 15px;
+      animation: fadeIn 0.4s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .doc-content {
+      display: none;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 20px;
+      border-radius: 24px;
+      margin-top: 20px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #cbd5e1;
+      max-height: 200px;
+      overflow-y: auto;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    footer {
+      font-size: 0.75rem;
+      color: #6b7280;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    footer div { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
+    footer a { color: #94a3b8; text-decoration: none; transition: 0.2s; cursor: pointer; }
+    footer a:hover { color: #fff; }
+
+    @media (max-width: 500px) {
+      .glass-card { padding: 32px 24px; }
+      h1 { font-size: 2.2rem; }
+    }
+  </style>
 </head>
 <body>
-    <div class="card">
-        <h1>DuckCloudNode</h1>
-        <p>Надежные и быстрые приватные прокси-серверы для вашей безопасности. Мы обеспечиваем стабильное соединение и полную конфиденциальность ваших данных.</p>
-        
-        <div class="price">от 199 ₽ / мес.</div>
-        
-        <a href="https://t.me/имя_твоего_бота" class="btn">Оформить подписку</a>
+  <div class="animated-bg">
+    <div class="grid-mesh"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
 
-        <footer>
-            <p>&copy; 2026 DuckCloudNode. Все права защищены.</p>
-            <a href="#">Политика конфиденциальности</a> | <a href="#">Оферта</a>
-        </footer>
+  <div class="wrapper">
+    <div class="glass-card">
+      <h1>DuckCloudNode</h1>
+      <p class="subtitle">Приватные прокси-серверы с фокусом на скорость, стабильность и абсолютную конфиденциальность.</p>
+
+      <div class="feature-row">
+        <div class="feature-item"><span>🔒</span><span>Шифрование</span></div>
+        <div class="feature-item"><span>⚡</span><span>1 Гбит/с</span></div>
+        <div class="feature-item"><span>🌍</span><span>10+ стран</span></div>
+      </div>
+
+      <div class="price-badge">
+        <span class="price">199 ₽</span>
+        <span class="period">/ месяц</span>
+      </div>
+
+      <button class="btn" onclick="showError()">
+        <span>Оформить подписку</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+
+      <div id="error-toast">
+        Оплата временно приостановлена по техническим причинам. Приносим извинения.
+      </div>
+
+      <div id="doc-viewer" class="doc-content"></div>
+
+      <footer>
+        <span>© 2026 DuckCloudNode</span>
+        <div>
+          <a onclick="showDoc('privacy')">Политика конфиденциальности</a>
+          <a onclick="showDoc('terms')">Публичная оферта</a>
+        </div>
+      </footer>
     </div>
+  </div>
+
+  <script>
+    function showError() {
+      const err = document.getElementById('error-toast');
+      err.style.display = 'block';
+      setTimeout(() => { err.style.display = 'none'; }, 5000);
+    }
+
+    // Объект с документами (синтаксически исправлен)
+    const docs = {
+      privacy: "<strong>Политика конфиденциальности VPN сервиса DuckCloudNode</strong><br><br>" +
+        "Настоящий документ определяет порядок обработки и защиты персональных данных пользователей VPN сервиса DuckCloudNode. Мы соблюдаем требования законодательства о защите персональных данных и обеспечиваем максимальную безопасность вашей информации.<br><br>" +
+        "<strong>1. Общие положения</strong><br>" +
+        "1.1. Настоящая Политика конфиденциальности действует в отношении всей информации, которую проект «DuckCloudNode», расположенный на доменном имени xpay-company.github.io, может получить о Пользователе.<br>" +
+        "1.2. Оператор ставит своей важнейшей целью соблюдение прав и свобод человека при обработке его персональных данных.<br>" +
+        "1.3. Политика применяется ко всей информации по адресу: https://xpay-company.github.io/DuckCloudNode/.<br><br>" +
+        "<strong>2. Основные понятия</strong><br>" +
+        "Включают автоматизированную обработку, блокирование, обезличивание, предоставление и уничтожение персональных данных.<br><br>" +
+        "<strong>3. Обрабатываемые данные</strong><br>" +
+        "3.1. Адрес электронной почты, IP-адрес.<br>" +
+        "3.2. Сбор обезличенных данных (cookie) через сервисы статистики.<br><br>" +
+        "<strong>4. Цели обработки</strong><br>" +
+        "Заключение и исполнение гражданско-правовых договоров, а также информирование о новых продуктах (с возможностью отказа).<br><br>" +
+        "<strong>5. Правовые основания</strong><br>" +
+        "Данные обрабатываются только при их самостоятельной отправке Пользователем через формы на сайте.<br><br>" +
+        "<strong>6. Порядок обработки и хранения</strong><br>" +
+        "Обеспечивается полная сохранность данных. Передача третьим лицам исключена, кроме случаев исполнения законодательства. Срок обработки неограничен. Отзыв согласия возможен через duckcloudnode@gmail.com.<br><br>" +
+        "<strong>7. Трансграничная передача</strong><br>" +
+        "Осуществляется только при условии обеспечения надежной защиты прав субъектов иностранным государством.<br><br>" +
+        "<strong>8. Заключительные положения</strong><br>" +
+        "Актуальная версия всегда доступна на сайте. Все вопросы: duckcloudnode@gmail.com.",
+
+      terms: "<strong>Условия использования сервиса DuckCloudNode</strong><br><br>" +
+        "Настоящая публичная оферта определяет условия предоставления услуг сервиса DuckCloudNode (далее — СЕРВИС). Используя наш функционал в Telegram-боте или на сайте, вы автоматически соглашаетесь с условиями данного договора.<br><br>" +
+        "<strong>Статья 1. Предмет договора-оферты</strong><br>" +
+        "1.1. ПРОДАВЕЦ обязуется предоставить ПОКУПАТЕЛЮ доступ к услугам по настройке защищенных сетевых протоколов и конфиденциальных соединений, а ПОКУПАТЕЛЬ обязуется оплатить и принять заказанные услуги (далее — ТОВАР).<br><br>" +
+        "<strong>Статья 2. Момент заключения договора</strong><br>" +
+        "2.1. Текст данного Договора является публичной офертой (в соответствии со статьей 435 и частью 2 статьи 437 Гражданского кодекса РФ).<br>" +
+        "2.2. Факт оформления ЗАКАЗА ТОВАРА у ПРОДАВЦА через автоматизированный интерфейс Telegram-бота является безоговорочным принятием данного Договора, и ПОКУПАТЕЛЬ рассматривается как лицо, вступившее с DuckCloudNode в договорные отношения.<br>" +
+        "2.3. Оформление ЗАКАЗА ТОВАРА осуществляется ПОКУПАТЕЛЕМ самостоятельно в интерфейсе СЕРВИСА.<br><br>" +
+        "<strong>Статья 3. Цена ТОВАРА</strong><br>" +
+        "3.1. Цены в СЕРВИСЕ указаны в рублях за единицу ТОВАРА (период доступа).<br>" +
+        "3.2. Общая сумма ЗАКАЗА указывается в интерфейсе платежной системы в момент совершения транзакции. Цена может включать комиссии платежных агрегаторов.<br><br>" +
+        "<strong>Статья 4. Оплата ТОВАРА</strong><br>" +
+        "4.1. Оплата производится в форме 100% (сто процентов) предоплаты через доступные платежные шлюзы. Обязанность по оплате считается исполненной с момента зачисления денежных средств на расчетный счет или баланс ПРОДАВЦА в платежной системе.<br>" +
+        "4.2. ТОВАРЫ поставляются ПОКУПАТЕЛЮ в соответствии с выбранным тарифом и оплаченным счетом.<br><br>" +
+        "<strong>Статья 5. Доставка ТОВАРА</strong><br>" +
+        "5.1. Доставка ТОВАРА (предоставление конфигурационных файлов или ключей доступа) осуществляется в автоматическом режиме немедленно после подтверждения оплаты в интерфейсе Telegram-бота.<br><br>" +
+        "<strong>Статья 6. Права и обязанности сторон</strong><br>" +
+        "6.1. ПРОДАВЕЦ обязуется:<br>" +
+        "6.1.1. Не разглашать частную информацию ПОКУПАТЕЛЯ и не предоставлять доступ к ней третьим лицам, за исключением случаев, предусмотренных законодательством.<br>" +
+        "6.1.2. Предоставить ПОКУПАТЕЛЮ возможность получения технической поддержки по контактам, указанным в СЕРВИСЕ.<br>" +
+        "6.1.3. Оставлять за собой право изменять настоящий ДОГОВОР в одностороннем порядке.<br>" +
+        "6.2. ПОКУПАТЕЛЬ обязуется:<br>" +
+        "6.2.1. До момента заключения ДОГОВОРА ознакомиться с условиями оферты и правилами пользования СЕРВИСОМ.<br>" +
+        "6.2.2. Использовать предоставленный доступ исключительно в законных целях.<br>" +
+        "6.2.3. Принять и оплатить ТОВАР согласно выбранному тарифу.<br><br>" +
+        "<strong>Статья 7. Ответственность сторон</strong><br>" +
+        "7.1. ПРОДАВЕЦ не несет ответственности за неработоспособность услуг, вызванную действиями третьих лиц, блокировками со стороны интернет-провайдеров или государственными ограничениями на использование определенных сетевых протоколов.<br>" +
+        "7.2. СЕРВИС предоставляется по принципу «как есть». ПРОДАВЕЦ не несет ответственности, если ожидания ПОКУПАТЕЛЯ о потребительских свойствах ТОВАРА оказались не оправданы.<br>" +
+        "7.3. Все споры решаются путем переговоров через службу поддержки СЕРВИСА.<br><br>" +
+        "<strong>Статья 8. Форс-мажорные обстоятельства</strong><br>" +
+        "8.1. Стороны освобождаются от ответственности за неисполнение обязательств при наступлении обстоятельств непреодолимой силы: стихийные бедствия, военные действия, эпидемии, запретительные меры государственных органов и иные глобальные технические сбои в работе сети Интернет.<br><br>" +
+        "<strong>Статья 9. Срок действия договора</strong><br>" +
+        "9.1. Настоящий ДОГОВОР вступает в силу с момента начала взаимодействия с интерфейсом DuckCloudNode и действует до полного исполнения обязательств СТОРОНАМИ."
+    };
+
+    function showDoc(type) {
+      const viewer = document.getElementById('doc-viewer');
+      if (type === 'privacy') {
+        viewer.innerHTML = docs.privacy;
+      } else if (type === 'terms') {
+        viewer.innerHTML = docs.terms;
+      }
+      viewer.style.display = 'block';
+      // Плавная прокрутка к документу
+      viewer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    // Эффект 3D наклона карточки (параллакс мыши)
+    const card = document.querySelector('.glass-card');
+    window.addEventListener('mousemove', (e) => {
+      const xAxis = (e.clientX / window.innerWidth - 0.5) * 10;
+      const yAxis = (e.clientY / window.innerHeight - 0.5) * -10;
+      card.style.transform = `rotateX(${yAxis}deg) rotateY(${xAxis}deg)`;
+    });
+    window.addEventListener('mouseleave', () => {
+      card.style.transform = 'rotateX(0deg) rotateY(0deg)';
+    });
+  </script>
 </body>
 </html>
